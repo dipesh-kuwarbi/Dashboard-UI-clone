@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { ChakraProvider, Box, Flex } from "@chakra-ui/react";
-import Header from "./Header";
+import Header from "./Component/Header";
+import theme from "./theme";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(true);
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Flex
         direction="column"
         height="100vh"
-        marginLeft={isOpen ? "250px" : "60px"}
+        marginLeft={isOpen ? "250px" : "0px"}
       >
         <Header isOpen={isOpen} setIsOpen={(value) => setIsOpen(value)} />
         <Box flex="1" overflow="auto"></Box>
