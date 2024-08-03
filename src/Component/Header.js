@@ -12,6 +12,7 @@ import { FiSearch, FiBell } from "react-icons/fi";
 import { RiAppsFill } from "react-icons/ri";
 import { CiMail, CiSettings } from "react-icons/ci";
 import HeaderIcon from "./common/HeaderIcon";
+import Sidebar from "./Sidebar";
 
 const Header = ({ isOpen, setIsOpen }) => {
   const icons = [
@@ -30,8 +31,9 @@ const Header = ({ isOpen, setIsOpen }) => {
             icon={<RiAppsFill size="large" />}
             aria-label={"Open Menu"}
             sx={{ _hover: { bgColor: "gray.700" } }}
-            onClick={() => setIsOpen(!isOpen)}
+            // onClick={() => setIsOpen(!isOpen)}
           />
+          <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
           <InputGroup
             ml={4}
             bg="brand.700"

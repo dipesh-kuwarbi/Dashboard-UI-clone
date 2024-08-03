@@ -4,7 +4,7 @@ import Header from "./Component/Header";
 import theme from "./theme";
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <ChakraProvider theme={theme}>
       <Flex
