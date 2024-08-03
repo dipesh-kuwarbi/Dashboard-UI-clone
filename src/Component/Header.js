@@ -7,9 +7,9 @@ import {
   Avatar,
   InputGroup,
   InputLeftElement,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { FiSearch, FiBell } from "react-icons/fi";
-import { RiAppsFill } from "react-icons/ri";
 import { CiMail, CiSettings } from "react-icons/ci";
 import HeaderIcon from "./common/HeaderIcon";
 import Sidebar from "./Sidebar";
@@ -20,26 +20,41 @@ const Header = ({ isOpen, setIsOpen }) => {
     <CiSettings size={18} />,
     <FiBell size={18} />,
   ];
+
+  // Determine if the sidebar toggle button should be visible
+  const showSidebarToggle = useBreakpointValue({ base: true, md: false });
+
   return (
-    <Box bg={"brand.800"} px={4}>
-      <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-        <Flex alignItems={"center"}>
-          <IconButton
-            bg={"brand.800"}
-            color="brand.500"
-            size={"sm"}
-            icon={<RiAppsFill size="large" />}
-            aria-label={"Open Menu"}
-            sx={{ _hover: { bgColor: "gray.700" } }}
-            // onClick={() => setIsOpen(!isOpen)}
-          />
+    <Box
+      bg="brand.800"
+      px={4}
+      ml={{ base: "0", md: "60px" }} // Adjust margin based on screen size
+      py={2}
+    >
+      <Flex
+        h={16}
+        alignItems="center"
+        justifyContent="space-between"
+        wrap="wrap"
+      >
+        <Flex alignItems="center" gap={4} flex="1">
+          {showSidebarToggle && (
+            <IconButton
+              bg="brand.800"
+              color="brand.500"
+              size="sm"
+              // icon={<RiAppsFill size="large" />}
+              aria-label="Open Menu"
+              sx={{ _hover: { bgColor: "gray.700" } }}
+              onClick={() => setIsOpen(!isOpen)}
+            />
+          )}
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
           <InputGroup
-            ml={4}
             bg="brand.700"
-            w="200px"
+            w={{ base: "140px", sm: "200px" }}
             borderColor="brand.900"
-            borderRaidus={2}
+            borderRadius={2}
           >
             <InputLeftElement pointerEvents="none">
               <FiSearch color="white" />
@@ -47,14 +62,14 @@ const Header = ({ isOpen, setIsOpen }) => {
             <Input
               placeholder="Search..."
               sx={{ _hover: { borderColor: "brand.500" } }}
-            ></Input>
+            />
           </InputGroup>
         </Flex>
-        <Flex alignItems={"center"} gap={2}>
+        <Flex alignItems="center" gap={1}>
           {icons.map((icon, index) => (
             <HeaderIcon key={index} icon={icon} />
           ))}
-          <Avatar size={"sm"} ml={4} src={"https://bit.ly/broken-link"} />
+          <Avatar size="sm" src="https://bit.ly/broken-link" />
         </Flex>
       </Flex>
     </Box>
