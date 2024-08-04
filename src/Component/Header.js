@@ -13,26 +13,22 @@ import { FiSearch, FiBell } from "react-icons/fi";
 import { CiMail, CiSettings } from "react-icons/ci";
 import HeaderIcon from "./common/HeaderIcon";
 import Sidebar from "./Sidebar";
+import { motion } from "framer-motion";
 
 const Header = ({ isOpen, setIsOpen }) => {
+  const MotionBox = motion(Box);
   const icons = [
     <CiMail size={18} />,
     <CiSettings size={18} />,
     <FiBell size={18} />,
   ];
 
-  // Determine if the sidebar toggle button should be visible
   const showSidebarToggle = useBreakpointValue({ base: true, md: false });
 
   return (
-    <Box
-      bg="brand.800"
-      px={4}
-      ml={{ base: "0", md: "60px" }} // Adjust margin based on screen size
-      py={2}
-    >
+    <Box bg="brand.800" px={4} ml={{ base: "0", md: "60px" }} py={2}>
       <Flex
-        h={16}
+        h={12}
         alignItems="center"
         justifyContent="space-between"
         wrap="wrap"
@@ -50,20 +46,25 @@ const Header = ({ isOpen, setIsOpen }) => {
             />
           )}
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <InputGroup
-            bg="brand.700"
-            w={{ base: "140px", sm: "200px" }}
-            borderColor="brand.900"
-            borderRadius={2}
+          <MotionBox
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            <InputLeftElement pointerEvents="none">
-              <FiSearch color="white" />
-            </InputLeftElement>
-            <Input
-              placeholder="Search..."
-              sx={{ _hover: { borderColor: "brand.500" } }}
-            />
-          </InputGroup>
+            <InputGroup
+              bg="brand.700"
+              w={{ base: "140px", sm: "200px" }}
+              borderColor="brand.900"
+              borderRadius={2}
+            >
+              <InputLeftElement pointerEvents="none">
+                <FiSearch color="white" />
+              </InputLeftElement>
+              <Input
+                placeholder="Search..."
+                sx={{ _hover: { borderColor: "brand.500" } }}
+              />
+            </InputGroup>
+          </MotionBox>
         </Flex>
         <Flex alignItems="center" gap={1}>
           {icons.map((icon, index) => (

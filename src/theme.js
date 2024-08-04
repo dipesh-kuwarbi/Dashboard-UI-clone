@@ -5,6 +5,7 @@ const colors = {
     900: "#141316", //Bg dark color
     800: "#2a2b38", // Dark color
     700: "#282B2F",
+    600: "#20232A",
     500: "#7593FE", // Primary color
   },
 };
